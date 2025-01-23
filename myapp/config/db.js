@@ -1,12 +1,8 @@
-const mongoose = require("mongoose");
-
+import mongoose from "mongoose";
+import .env from "env";
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
+    await mongoose.connect("mongodb://localhost:27017/GREENLAND.EDU");
     console.log("MongoDB Connected");
   } catch (error) {
     console.error(`Error: ${error.message}`);
@@ -14,4 +10,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+export default connectDB;
