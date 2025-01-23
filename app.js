@@ -1,32 +1,32 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const path = require("path");
-
-dotenv.config();
-
+const express = require('express');
 const app = express();
-app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "public")));
+const connectDB = require('./myapp/config/db');
+const port = 3000;
 
-// Database connection
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI);
-    console.log("MongoDB Connected");
-  } catch (error) {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
-  }
-};
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-connectDB();
+// Set view engine
+app.set('view engine', 'ejs');
 
-// Basic route
-app.get("/", (req, res) => {
-  res.send("API is running...");
+// Routes
+const studentRoutes = require('./myapp/routes/students');
+const courseRoutes = require('./myapp/routes/courses');
+
+app.use('/students', studentRoutes);
+app.use('/courses', courseRoutes);
+
+// Default route for dashboard
+app.get('/', (req, res) => {
+  res.render('dashboard', { title: 'Dashboard' });
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port http://localhost${PORT}`));
+// Connect to MongoDB
+connectDB();
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
