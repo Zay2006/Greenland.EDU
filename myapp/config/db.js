@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import .env from "env";
+require("dotenv").config();
 const connectDB = async () => {
   try {
     await mongoose.connect("mongodb://localhost:27017/GREENLAND.EDU");
