@@ -3,9 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>HELLO</h1>
+    <header>
+        <h1><%= title %></h1>
+        <nav>
+            <a href="/students">Students</a>
+            <a href="/courses">Courses</a>
+        </nav>
+    </header>
+    <main>
+        <div class="dashboard-content">
+            <h2>Welcome to Greenland.EDU</h2>
+            <!-- Add your dashboard content here -->
+        </div>
+    </main>
 </body>
 </html>

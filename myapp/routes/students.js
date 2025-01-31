@@ -1,14 +1,14 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const studentController = require("../controllers/studentController");
 
-router.get("/", studentController.getAllStudents);
-router.post("/", studentController.createStudent);
-
+// GET all students
 router.get('/', (req, res) => {
-    res.render('dashboard', { title: 'Dashboard' });
-  });
+    res.render('students/index', { 
+        title: 'Students List',
+        students: [] // You'll populate this with actual data later
+    });
+});
 
-  
-module.exports = router;
+// Add more student routes here
+
+export default router; 

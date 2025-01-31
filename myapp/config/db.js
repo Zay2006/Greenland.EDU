@@ -1,13 +1,17 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import config from './config.js';
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/GREENLAND');
-        console.log('MongoDB Connected...');
-    } catch (err) {
-        console.error(err.message);
+        await mongoose.connect(config.mongoUri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('MongoDB Connected Successfully');
+    } catch (error) {
+        console.error('MongoDB Connection Error:', error.message);
         process.exit(1);
     }
 };
 
-module.exports = connectDB;
+export default connectDB; 
