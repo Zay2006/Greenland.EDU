@@ -1,4 +1,4 @@
-const Student = require("../models/Student");
+import Student from "../models/Student";
 
 const studentController = {
   getAllStudents: async (req, res) => {
