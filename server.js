@@ -2,12 +2,12 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import connectDB from './myapp/config/db.js';
-import config from './myapp/config/config.js';
+import connectDB from './config/db.js';
+import config from './config/config.js';
 
 // Routes
 import studentRoutes from './myapp/routes/students.js';
-import courseRoutes from './myapp/routes/courses.js';
+import courseRoutes from './routes/courses.js';
 
 // ES6 module __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
