@@ -1,10 +1,15 @@
-import mongoose from "mongoose";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/database.js";
 
-const courseSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    code: { type: String, required: true, unique: true },
-    students: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }],
-    createdAt: { type: Date, default: Date.now },
+const Course = sequelize.define("Course", {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
+  },
 });
 
-module.exports = mongoose.model('Course', courseSchema);
+export default Course;
