@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import connectDB from './config/db.js';
+import connectDB from './config/database.js';
 import config from './config/config.js';
 
 // Routes
