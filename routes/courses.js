@@ -6,7 +6,7 @@ const router = express.Router();
 // GET all courses
 router.get("/", async (req, res) => {
   try {
-    const courses = await Course.findAll();
+    const courses = await Course.find();
     res.render("courses/index", {
       title: "Courses List",
       courses,
