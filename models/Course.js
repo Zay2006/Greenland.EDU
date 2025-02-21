@@ -1,16 +1,27 @@
-import mongoose from "mongoose";
+import { Sequelize, DataTypes } from "sequelize";
+import dotenv from "dotenv";
 
-const courseSchema = new mongoose.Schema({
+dotenv.config();
+
+const sequelize = new Sequelize(
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASSWORD,
+  {
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT,
+  }
+);
+
+const Course = sequelize.define("Course", {
   name: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   createdAt: {
-    type: Date,
-    default: Date.now,
+    type: DataTypes.DATE,
+    defaultValue: DataTypes.NOW,
   },
 });
-
-const Course = mongoose.model("Course", courseSchema);
 
 export default Course;

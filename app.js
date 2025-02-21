@@ -4,9 +4,10 @@ import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import connectDB from "./config/database.js";
+import { connectDB } from "./config/database.js";
 import courseRoutes from "./routes/courses.js";
 import errorHandler from "./middleware/errorHandler.js";
+import Course from "./models/Course.js";
 
 dotenv.config();
 
@@ -19,10 +20,8 @@ const __dirname = dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "public")));
 
-// Connect to MongoDB
-connectDB();
+// Define your routes here
 
-// Use routes
 app.use("/courses", courseRoutes);
 
 // Basic route
@@ -33,5 +32,13 @@ app.get("/", (req, res) => {
 // Use error handler middleware
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const startServer = async () => {
+  await connectDB();
+
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+};
+
+startServer();
