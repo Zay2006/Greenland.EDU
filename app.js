@@ -13,6 +13,7 @@ dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Get __dirname equivalent in ES module
 const __filename = fileURLToPath(import.meta.url);
@@ -30,6 +31,22 @@ app.use("/courses", courseRoutes);
 // Basic route
 app.get("/", (req, res) => {
   res.render("index");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  // Add authentication logic here
+  if (username === "student") {
+    res.render("student", { username });
+  } else if (username === "teacher") {
+    res.render("teacher", { username });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 // Use error handler middleware

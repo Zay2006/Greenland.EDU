@@ -1,17 +1,7 @@
 import { Sequelize, DataTypes } from "sequelize";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    dialect: process.env.DB_DIALECT || "mysql", // Add default dialect here
-  }
-);
+import { sequelize } from "../config/database.js";
+import Major from "./Major.js";
+import Minor from "./Minor.js";
 
 const Course = sequelize.define("Course", {
   name: {
@@ -24,4 +14,7 @@ const Course = sequelize.define("Course", {
   },
 });
 
-export default sequelize;
+Course.belongsTo(Major);
+Course.belongsTo(Minor);
+
+export default Course;
