@@ -20,13 +20,16 @@ const __dirname = dirname(__filename);
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// Set the view engine to EJS
+app.set("view engine", "ejs");
+
 // Define your routes here
 
 app.use("/courses", courseRoutes);
 
 // Basic route
 app.get("/", (req, res) => {
-  res.send("API is running...");
+  res.render("index");
 });
 
 // Use error handler middleware
