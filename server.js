@@ -10,7 +10,6 @@ import cors from "cors";
 // Routes
 import studentRoutes from "./routes/students.js";
 import courseRoutes from "./routes/courses.js"; // Ensure the correct path to your course routes
-import majorMinorRoutes from "./routes/majorsMinors.js";
 
 // ES6 module __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
@@ -34,38 +33,12 @@ app.set("views", path.join(__dirname, "views"));
 // Routes
 app.use("/students", studentRoutes);
 app.use("/courses", courseRoutes); // Use the course routes
-app.use("/majors-minors", majorMinorRoutes);
 
 // Default route for dashboard
 app.get("/", (req, res) => {
   res.render("dashboard", { title: "Dashboard" });
 });
 
-app.get("/login/student", (req, res) => {
-  res.render("login", { userType: "student" });
-});
-
-app.get("/login/teacher", (req, res) => {
-  res.render("login", { userType: "teacher" });
-});
-
-app.post("/login", async (req, res) => {
-  const { username, password, userType } = req.body;
-  // Add authentication logic here
-  if (userType === "student" && username === "student") {
-    res.render("student", { username });
-  } else if (userType === "teacher" && username === "teacher") {
-    // Fetch students data for teacher view
-    const students = await Student.findAll({ include: [Major, Minor] });
-    res.render("teacher", { username, students });
-  } else if (userType === "admin" && username === "admin") {
-    // Fetch teachers data for admin view
-    const teachers = await Teacher.findAll();
-    res.render("admin", { username, teachers });
-  } else {
-    res.redirect("/login");
-  }
-});
 
 // Error handling middleware
 app.use(errorHandler);

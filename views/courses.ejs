@@ -8,12 +8,15 @@
     <!-- Link to your stylesheet -->
   </head>
   <body>
-    <h1><%= title %></h1>
+    <h1><Courses</h1>
     <div class="courses-list">
       <% if (courses.length > 0) { %>
       <ul>
         <% courses.forEach(course => { %>
-        <li><%= course.name %></li>
+        <h1>
+          <li><%= course.name %></li>
+        </h1> 
+        <li><%= course.code %></li>
         <% }) %>
       </ul>
       <% } else { %>

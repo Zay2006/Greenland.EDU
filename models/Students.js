@@ -1,34 +1,22 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const Student = sequelize.define(
-    'Student',
+const Course = sequelize.define(
+    'Course',
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        fullName: {
-            type: DataTypes.STRING,
+        name: {
+            type: DataTypes.STRING(255),
             allowNull: false
         },
-        email: {
-            type: DataTypes.STRING,
+        code: {
+            type: DataTypes.STRING(50),
             allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true
-            }
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        role: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: 'student'
+            unique: true
         },
         created_at: {
             type: DataTypes.DATE,
@@ -40,11 +28,12 @@ const Student = sequelize.define(
         }
     },
     {
-        tableName: 'Student',
+        tableName: 'Course',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at'
     }
 );
 
-export default Student;
+export default Course;
+// Compare this snippet from models/Students.js:

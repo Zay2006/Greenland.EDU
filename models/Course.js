@@ -1,20 +1,33 @@
-import { Sequelize, DataTypes } from "sequelize";
-import sequelize from "../config/database.js";
-import Major from "./Major.js";
-import Minor from "./Minor.js";
+import { DataTypes, Model } from "sequelize";
+import sequelize from "../config/database.js"; // Ensure this file exports a Sequelize instance
 
-const Course = sequelize.define("Course", {
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
-  },
-});
+class Course extends Model {}
 
-Course.belongsTo(Major);
-Course.belongsTo(Minor);
+Course.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    code: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      unique: true,
+    },
+  },
+  {
+    sequelize, // Pass the Sequelize instance
+    modelName: "Course",
+    tableName: "Course",
+    timestamps: true, // Automatically manages `created_at` & `updated_at`
+    createdAt: "created_at",
+    updatedAt: "updated_at",
+  }
+);
 
 export default Course;
