@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teacher Dashboard</title>
-</head>
-<body>
-  <h1>Teacher Dashboard</h1>
-  <p>Welcome, <%= username %>!</p>
-  <h2>Access Student Grades</h2>
-  <!-- Add content for accessing student grades here -->
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard</title>
+  </head>
+  <body>
+    <h1>Teacher Dashboard</h1>
+    <p>Welcome, <%= username %>!</p>
+    <h2>Students</h2>
+    <ul>
+      <% students.forEach(student => { %>
+      <li>
+        <%= student.name %> - Major: <%= student.Major.name %>, Minor: <%=
+        student.Minor.name %>
+        <p>Notes: <%= student.notes %></p>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
 </html>

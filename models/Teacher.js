@@ -1,9 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/database.js";
-import Major from "./Major.js";
-import Minor from "./Minor.js";
 
-const Student = sequelize.define("Student", {
+const Teacher = sequelize.define("Teacher", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -13,17 +11,10 @@ const Student = sequelize.define("Student", {
     allowNull: false,
     unique: true,
   },
-  notes: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
   createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,
   },
 });
 
-Student.belongsTo(Major);
-Student.belongsTo(Minor);
-
-export default Student;
+export default Teacher;
