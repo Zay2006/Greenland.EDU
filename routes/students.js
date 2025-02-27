@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
     console.log('students route');
   try {
     const students = await Student.findAll() // Fetch students from the database
+    console.log(students);
     res.render("students", { title: "Students", students });
   } catch (error) {
     console.error("Error fetching students:", error);

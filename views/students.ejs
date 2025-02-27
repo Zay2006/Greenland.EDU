@@ -13,7 +13,9 @@
       <% if (students.length > 0) { %>
       <ul>
         <% students.forEach(student => { %>
-        <li><%= student.first_name %> <%= student.last_name %></li>
+          <li><%= student.fullName %> </li>
+          <li><%= student.email %> </li>
+          <li><%= student.role %> </li>
         <% }) %>
       </ul>
       <% } else { %>
