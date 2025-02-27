@@ -2,7 +2,6 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
-import { connectDB } from "./config/database.js"; // Correct import
 import bodyParser from "body-parser";
 import { dirname } from "path";
 import errorHandler from "./middleware/errorHandler.js";
@@ -73,7 +72,6 @@ app.use(errorHandler);
 
 // Start the server
 const startServer = async () => {
-  await connectDB();
 
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {

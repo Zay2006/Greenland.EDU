@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
-import { sequelize } from "../config/database.js";
+import sequelize from "../config/database.js";
 
 const Major = sequelize.define("Major", {
   name: {

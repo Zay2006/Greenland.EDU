@@ -9,15 +9,15 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <div class="courses-list">
-      <% if (courses.length > 0) { %>
+    <div class="students-list">
+      <% if (students.length > 0) { %>
       <ul>
-        <% courses.forEach(course => { %>
-        <li><%= course.name %></li>
+        <% students.forEach(student => { %>
+        <li><%= student.first_name %> <%= student.last_name %></li>
         <% }) %>
       </ul>
       <% } else { %>
-      <p>No courses available.</p>
+      <p>No students available.</p>
       <% } %>
     </div>
     <a href="/">Back to Dashboard</a>

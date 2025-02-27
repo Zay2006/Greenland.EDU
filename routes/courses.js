@@ -14,6 +14,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Add more course routes here
-
 export default router;

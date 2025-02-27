@@ -1,14 +1,19 @@
-import express from 'express';
+import express from "express";
+import Student from "../models/Students.js"; // Ensure the correct path to your Student model
+
 const router = express.Router();
 
 // GET all students
-router.get('/', (req, res) => {
-    res.render('students/index', { 
-        title: 'Students List',
-        students: [] // You'll populate this with actual data later
-    });
+router.get("/", async (req, res) => {
+
+    console.log('students route');
+  try {
+    const student = await Student.findAll() // Fetch students from the database
+    res.render("students", { title: "Students", student });
+  } catch (error) {
+    console.error("Error fetching students:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
-// Add more student routes here
-
-export default router; 
+export default router;
