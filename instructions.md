@@ -227,3 +227,78 @@ INSERT INTO Course (name, code) VALUES
 ('Cloud Computing', 'CC401'),
 ('Mobile App Development', 'MAD101'),
 ('Artificial Intelligence', 'AI201');
+
+
+
+import { DataTypes, Model } from "sequelize";
+import sequelize from "../config/database.js"; // Ensure this file exports a Sequelize instance
+
+class Course extends Model {}
+
+Course.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
+    code: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      unique: true,
+    },
+  },
+  {
+    sequelize, // Pass the Sequelize instance
+    modelName: "Course",
+    tableName: "Course",
+    timestamps: true, // Automatically manages `created_at` & `updated_at`
+    createdAt: "created_at",
+    updatedAt: "updated_at",
+  }
+);
+
+export default Course;
+
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/database.js';
+
+const Course = sequelize.define(
+    'Course',
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        name: {
+            type: DataTypes.STRING(255),
+            allowNull: false
+        },
+        code: {
+            type: DataTypes.STRING(50),
+            allowNull: false,
+            unique: true
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        },
+        updated_at: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        }
+    },
+    {
+        tableName: 'Course',
+        timestamps: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    }
+);
+
+export default Course;
