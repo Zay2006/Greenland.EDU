@@ -10,7 +10,6 @@ router.get("/students", async (req, res) => {
 
   try {
     const students = await Student.findAll() // Fetch students from the database
-    console.log(students);
 
     res.render("students/students", { title: "Students", students });
  

@@ -264,25 +264,38 @@ Course.init(
 
 export default Course;
 
+
 import { DataTypes } from 'sequelize';
 import sequelize from '../config/database.js';
 
-const Course = sequelize.define(
-    'Course',
+const Student = sequelize.define(
+    'Student',
     {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
-        name: {
-            type: DataTypes.STRING(255),
+        fullName: {
+            type: DataTypes.STRING,
             allowNull: false
         },
-        code: {
-            type: DataTypes.STRING(50),
+        email: {
+            type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: true,
+            validate: {
+                isEmail: true
+            }
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        role: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: 'student'
         },
         created_at: {
             type: DataTypes.DATE,
@@ -294,11 +307,11 @@ const Course = sequelize.define(
         }
     },
     {
-        tableName: 'Course',
+        tableName: 'Student',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at'
     }
 );
 
-export default Course;
+export default Student;
