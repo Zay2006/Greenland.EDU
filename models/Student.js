@@ -4,7 +4,7 @@ import sequelize from '../config/database.js';
 const Student = sequelize.define(
     'Student',
     {
-        id: {
+      id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
