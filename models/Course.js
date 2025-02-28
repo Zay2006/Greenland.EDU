@@ -30,4 +30,13 @@ Course.init(
   }
 );
 
+Course.associate = function (models) {
+  // associations can be defined here
+  Course.belongsToMany(models.Student, {
+    through: "StudentCourses",
+    as: "students",
+    foreignKey: "courseId",
+  });
+};
+
 export default Course;

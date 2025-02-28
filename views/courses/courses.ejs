@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/style.css" />
-    <!-- Link to your stylesheet -->
   </head>
   <body>
-    <h1><Courses</h1>
+    <h1>Courses</h1>
     <div class="courses-list">
       <% if (courses.length > 0) { %>
       <ul>
         <% courses.forEach(course => { %>
-        <h1>
-          <li><%= course.name %></li>
-        </h1> 
-        <li><%= course.code %></li>
+        <li>
+          <h2><%= course.name %></h2>
+          <p><%= course.code %></p>
+          <form action="/courses/delete/<%= course.id %>" method="POST">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
         <% }) %>
       </ul>
       <% } else { %>
       <p>No courses available.</p>
       <% } %>
     </div>
+    <h2>Add a new course</h2>
+    <form action="/courses" method="POST">
+      <label for="name">Course Name:</label>
+      <input type="text" id="name" name="name" required />
+      <label for="code">Course Code:</label>
+      <input type="text" id="code" name="code" required />
+      <button type="submit">Add Course</button>
+    </form>
     <a href="/">Back to Dashboard</a>
   </body>
 </html>
