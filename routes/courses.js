@@ -12,9 +12,7 @@ router.get("/courses", async (req, res) => {
     
     const courses = await Course.findAll(); // Use findAll to get all courses
 
-    console.log(courses);
-    
-    res.render("courses", { title: "Courses", courses }); // Render the view and pass 
+    res.render("courses/courses", { title: "Courses", courses }); // Render the view and pass 
     
   } catch (error) {
     console.error("Error fetching courses:", error);

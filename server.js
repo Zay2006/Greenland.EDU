@@ -1,22 +1,17 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import { dirname } from "path";
 import errorHandler from "./middleware/errorHandler.js";
+import studentRoute from './routes/students.js'; 
+import coursesRoute from './routes/courses.js';
 import cors from "cors";
-
-// Routes
-import studentRoutes from "./routes/students.js";
-import courseRoutes from "./routes/courses.js"; // Ensure the correct path to your course routes
+import 'dotenv/config'; 
 
 // ES6 module __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
-// Load environment variables
-dotenv.config();
 
 const app = express();
 
@@ -30,15 +25,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// Routes
-app.use("/students", studentRoutes);
-app.use("/courses", courseRoutes); // Use the course routes
-
 // Default route for dashboard
 app.get("/", (req, res) => {
   res.render("dashboard", { title: "Dashboard" });
 });
 
+app.get("/students", studentRoute); 
+app.get("/courses", coursesRoute)
 
 // Error handling middleware
 app.use(errorHandler);
