@@ -6,8 +6,6 @@ const router = express.Router();
 // GET all courses
 router.get("/courses", async (req, res) => {
 
-  console.log('COURSE ROUTES');
-
   try {
     
     const courses = await Course.findAll(); // Use findAll to get all courses

@@ -6,8 +6,6 @@ const router = express.Router();
 // GET all students
 router.get("/students", async (req, res) => {
 
-    console.log('students route');
-
   try {
     const students = await Student.findAll() // Fetch students from the database
 
